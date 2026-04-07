@@ -10,7 +10,7 @@ This repository contains the implementation of the code translation tools and ru
 
 # OP2 CI
 [![Documentation Status](https://readthedocs.org/projects/op2-dsl/badge/?version=latest)](https://op2-dsl.readthedocs.io/en/latest/?badge=latest)
-[![Build Status](https://github.com/ZamanLantra/OP2-Common-Fork/actions/workflows/test.yml/badge.svg)](https://github.com/ZamanLantra/OP2-Common-Fork/actions)
+[![Build Status](https://github.com/ZamanLantra/OP2-Common-Fork/actions/workflows/test.yml/badge.svg?branch=OP2_refactor)](https://github.com/ZamanLantra/OP2-Common-Fork/actions)
 
 ## Documentation
 Documentation is available on [Read the Docs](https://op2-dsl.readthedocs.io/en/latest/index.html).
