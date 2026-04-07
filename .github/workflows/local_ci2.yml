@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
   
 env:
-  SOURCE_SCRIPT: OP2-Common-Fork/scripts/zam_gnu
+  SOURCE_SCRIPT: OP2-Common-Fork/scripts/source_gnuz
   N_PROC: 24
 
 jobs:
