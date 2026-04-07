@@ -2,7 +2,7 @@ export SCRIPT_RUN_LOC=$PWD
 export LIB_LOC=$PWD/../../op2
 export APPS_LOC=$PWD/../../apps
 
-precision=( "dp" "sp" )
+precision=( "sp" "dp" )
 
 if [ -f "$SCRIPT_RUN_LOC/${TEST_APP}_test.log" ]; then
     rm $SCRIPT_RUN_LOC/${TEST_APP}_test.log

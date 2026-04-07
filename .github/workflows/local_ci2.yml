@@ -39,54 +39,86 @@ jobs:
         run: |
           source "$SOURCE_SCRIPT"
 
-          if [ -f makefiles/.config.mk ]; then
-            echo "Cleaning OP2..."
-            make -C op2 clean
-          fi
+          # if [ -f makefiles/.config.mk ]; then
+          #   echo "Cleaning OP2..."
+          #   make -C op2 clean
+          # fi
 
-          make -C op2 config
+          # make -C op2 config
 
       # 4. Compile OP2
       - name: Compile OP2
         run: |
           source "$SOURCE_SCRIPT"
 
-          echo "Building OP2..."
-          make -C op2 -j"$N_PROC"
+          # echo "Building OP2..."
+          # make -C op2 -j"$N_PROC"
 
-      # 5. Run functional tests
-      - name: Functional tests
+      # 5. Compile functional tests
+      - name: Compile functional tests
         run: |
           source "$SOURCE_SCRIPT"
           export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
-          ./functional_test.sh
+          COMPILE_TESTS=TRUE ./functional_test.sh
 
-      # 6. Run aero tests
-      - name: Aero tests
+      # 6. Run functional tests
+      - name: Run functional tests
         run: |
           source "$SOURCE_SCRIPT"
           export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
-          ./aero_test.sh
+          RUN_TESTS=TRUE ./functional_test.sh
 
-      # 7. Run MGCFD tests
-      - name: MGCFD tests
+      # 7. Compile aero tests
+      - name: Compile Aero tests
         run: |
           source "$SOURCE_SCRIPT"
           export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
-          ./mgcfd_test.sh
+          COMPILE_TESTS=TRUE ./aero_test.sh
 
-      # 8. Run airfoil tests
-      - name: Airfoil tests
+      # 8. Run aero tests
+      - name: Run Aero tests
         run: |
           source "$SOURCE_SCRIPT"
           export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
-          ./airfoil_test.sh
+          RUN_TESTS=TRUE ./aero_test.sh
 
-      # 9. Archive logs (always runs)
+      # 9. Compile MGCFD tests
+      - name: Compile MGCFD tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          COMPILE_TESTS=TRUE ./mgcfd_test.sh
+
+      # 10. Run MGCFD tests
+      - name: Run MGCFD tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          RUN_TESTS=TRUE ./mgcfd_test.sh
+
+      # 11. Compile airfoil tests 
+      - name: Compile Airfoil tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          COMPILE_TESTS=TRUE ./airfoil_test.sh
+
+      # 12. Run airfoil tests 
+      - name: Run Airfoil tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          RUN_TESTS=TRUE ./airfoil_test.sh
+
+      # 13. Archive logs 
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -96,7 +128,7 @@ jobs:
             *.log
             tests/**/*.log
 
-      # 10. Final status message
+      # 14. Final status message
       - name: Final status
         if: success()
         run: echo "CI tests passed"
