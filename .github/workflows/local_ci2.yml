@@ -16,8 +16,8 @@ on:
 env:
   SOURCE_SCRIPT: scripts/source_gnuz
   N_PROC: 64
-  M6_WING_PATH:"/home/zl/work3/OP2-Common/MG-CFD-app-OP2/M6_wing"
-  ROTOR_37_1M_PATH:"/home/zl/work3/OP2-Common/MG-CFD-app-OP2/Rotor37_1M"
+  M6_WING_PATH: "/home/zl/work3/OP2-Common/MG-CFD-app-OP2/M6_wing"
+  ROTOR_37_1M_PATH: "/home/zl/work3/OP2-Common/MG-CFD-app-OP2/Rotor37_1M"
 
 jobs:
   local-test:
