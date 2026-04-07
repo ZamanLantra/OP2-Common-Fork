@@ -15,7 +15,7 @@ on:
   
 env:
   SOURCE_SCRIPT: scripts/source_gnuz
-  N_PROC: 24
+  N_PROC: 64
 
 jobs:
   local-test:
@@ -51,8 +51,8 @@ jobs:
         run: |
           source "$SOURCE_SCRIPT"
 
-          # echo "Building OP2..."
-          # make -C op2 -j"$N_PROC"
+          echo "Building OP2..."
+          make -C op2 -j"$N_PROC"
 
       # 5. Compile functional tests
       - name: Compile functional tests
