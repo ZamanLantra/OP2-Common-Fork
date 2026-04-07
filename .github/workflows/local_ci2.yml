@@ -39,12 +39,12 @@ jobs:
         run: |
           source "$SOURCE_SCRIPT"
 
-          # if [ -f makefiles/.config.mk ]; then
-          #   echo "Cleaning OP2..."
-          #   make -C op2 clean
-          # fi
+          if [ -f makefiles/.config.mk ]; then
+            echo "Cleaning OP2..."
+            make -C op2 clean
+          fi
 
-          # make -C op2 config
+          make -C op2 config
 
       # 4. Compile OP2
       - name: Compile OP2
