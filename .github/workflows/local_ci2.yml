@@ -16,6 +16,7 @@ on:
 env:
   SOURCE_SCRIPT: scripts/source_gnuz
   N_PROC: 24
+  APP_EXTRA_TRANSLATOR_FLAGS: -I$(pwd)/op2/include
 
 jobs:
   local-test:
