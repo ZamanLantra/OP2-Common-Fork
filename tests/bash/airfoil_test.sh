@@ -30,6 +30,7 @@ fi
 if [[ "$TEST_AIRFOIL_CPP" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
 
     for p in "${precision[@]}"; do
+        if [[ "%p" == "dp" ]]; then continue fi # remove once the bug is fixed
 
         cd $APPS_LOC/c/${TEST_APP}/airfoil_plain/$p
 

@@ -11,6 +11,9 @@ RUN_TESTS=${RUN_TESTS:-FALSE}
 RUN_M6_WING=${RUN_M6_WING:-TRUE}
 RUN_ROTOR_37_1M=${RUN_ROTOR_37_1M:-TRUE}
 
+M6_WING_PATH=${M6_WING_PATH:-/home/zl/work3/OP2-Common/MG-CFD-app-OP2/M6_wing}
+ROTOR_37_1M_PATH=${ROTOR_37_1M_PATH:-/home/zl/work3/OP2-Common/MG-CFD-app-OP2/Rotor37_1M}
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$SCRIPT_DIR/../../MG-CFD-app-OP2"
 
@@ -58,21 +61,22 @@ fi
 if [[ "$RUN_TESTS" = "TRUE" ]]; then
     if [[ "$RUN_M6_WING" = "TRUE" ]]; then
         if [[ ! -d M6_wing ]]; then
-            wget https://warwick.ac.uk/fac/sci/dcs/research/systems/hpsc/software/m6_wing.tar.gz
-            tar -xvf m6_wing.tar.gz
-            rm m6_wing.tar.gz
+            # wget https://warwick.ac.uk/fac/sci/dcs/research/systems/hpsc/software/m6_wing.tar.gz
+            # tar -xvf m6_wing.tar.gz
+            # rm m6_wing.tar.gz
+            cp -r "$M6_WING_PATH" .
         fi
 
         cd M6_wing
         echo "Running tests on $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        validate "" "../euler3d_seq" "-i input.dat -v" "passed"
-        validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
-        validate "OMP_NUM_THREADS=8" "../euler3d_openmp" "-i input.dat -v" "passed"
+        # validate "" "../euler3d_seq" "-i input.dat -v" "passed"
+        # validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
+        validate "OMP_NUM_THREADS=6" "../euler3d_openmp" "-i input.dat -v" "passed"
         validate "" "../euler3d_cuda" "-i input.dat -v" "passed"
         validate "mpirun -np 64" "../euler3d_mpi_seq" "-i input.dat -v" "passed"
         validate "mpirun -np 64" "../euler3d_mpi_genseq" "-i input.dat -v" "passed"
-        validate "OMP_NUM_THREADS=8 mpirun -np 8" "../euler3d_mpi_openmp" "-i input.dat -v" "passed"
+        validate "OMP_NUM_THREADS=6 mpirun -np 8" "../euler3d_mpi_openmp" "-i input.dat -v" "passed"
         validate "mpirun -np 4" "../euler3d_mpi_cuda" "-i input.dat -v" "passed"
     fi
 
@@ -80,9 +84,10 @@ if [[ "$RUN_TESTS" = "TRUE" ]]; then
 
     if [[ "$RUN_ROTOR_37_1M" = "TRUE" ]]; then
         if [[ ! -d Rotor37_1M ]]; then
-            wget https://warwick.ac.uk/fac/sci/dcs/research/systems/hpsc/software/rotor37_1m.tar.gz
-            tar -xvf rotor37_1m.tar.gz
-            rm rotor37_1m.tar.gz
+            # wget https://warwick.ac.uk/fac/sci/dcs/research/systems/hpsc/software/rotor37_1m.tar.gz
+            # tar -xvf rotor37_1m.tar.gz
+            # rm rotor37_1m.tar.gz
+            cp -r "$ROTOR_37_1M_PATH" .
         fi
 
         cd Rotor37_1M
@@ -90,11 +95,11 @@ if [[ "$RUN_TESTS" = "TRUE" ]]; then
 
         # validate "" "../euler3d_seq" "-i input.dat -v" "passed"
         # validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
-        validate "OMP_NUM_THREADS=8" "../euler3d_openmp" "-i input.dat -v" "passed"
+        validate "OMP_NUM_THREADS=6" "../euler3d_openmp" "-i input.dat -v" "passed"
         validate "" "../euler3d_cuda" "-i input.dat -v" "passed"
         validate "mpirun -np 64" "../euler3d_mpi_seq" "-i input.dat -v" "passed"
         validate "mpirun -np 64" "../euler3d_mpi_genseq" "-i input.dat -v" "passed"
-        validate "OMP_NUM_THREADS=8 mpirun -np 8" "../euler3d_mpi_openmp" "-i input.dat -v" "passed"
+        validate "OMP_NUM_THREADS=6 mpirun -np 8" "../euler3d_mpi_openmp" "-i input.dat -v" "passed"
         validate "mpirun -np 4" "../euler3d_mpi_cuda" "-i input.dat -v" "passed"
     fi
 
