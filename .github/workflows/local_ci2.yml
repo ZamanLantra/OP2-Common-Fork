@@ -51,7 +51,7 @@ jobs:
           source "$SOURCE_SCRIPT"
 
           echo "Building OP2..."
-          make -C op2 -j"$(N_PROC)"
+          make -C op2 -j"$N_PROC"
 
       # 5. Run functional tests
       - name: Functional tests
