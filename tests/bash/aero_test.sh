@@ -42,14 +42,14 @@ if [[ "$TEST_AERO_CPP" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
         echo "Running tests on App: $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
         echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        validate "OMP_NUM_THREADS=32" "aero_openmp" "" "PASSED"
+        validate "OMP_NUM_THREADS=6" "aero_openmp" "" "PASSED"
         validate "" "aero_cuda" "" "PASSED"
-        validate "mpirun -np 64" "aero_par_mpi_seq" "" "PASSED"
-        validate "mpirun -np 64" "aero_par_mpi_genseq" "" "PASSED"
-        validate "OMP_NUM_THREADS=8 mpirun -np 8" "aero_par_mpi_openmp" "" "PASSED"
+        validate "mpirun -np 16" "aero_par_mpi_seq" "" "PASSED"
+        validate "mpirun -np 16" "aero_par_mpi_genseq" "" "PASSED"
+        validate "OMP_NUM_THREADS=6 mpirun -np 8" "aero_par_mpi_openmp" "" "PASSED"
         validate "mpirun -np 1" "aero_par_mpi_cuda" "" "PASSED"
-        # validate "" "aero_seq" "" "PASSED"
-        # validate "" "aero_genseq" "" "PASSED"
+        validate "" "aero_seq" "" "PASSED"
+        validate "" "aero_genseq" "" "PASSED"
     fi
 fi
 
@@ -71,14 +71,14 @@ if [[ "$TEST_AERO_CPP" = "TRUE" ]] && [[ "$TEST_HDF5" = "TRUE" ]]; then
         echo "Running tests on App: $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
         echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        validate "mpirun -np 64" "aero_mpi_seq" "" "PASSED"
-        validate "mpirun -np 64" "aero_mpi_genseq" "" "PASSED"
-        validate "OMP_NUM_THREADS=8 mpirun -np 8" "aero_mpi_openmp" "" "PASSED"
+        validate "mpirun -np 16" "aero_mpi_seq" "" "PASSED"
+        validate "mpirun -np 16" "aero_mpi_genseq" "" "PASSED"
+        validate "OMP_NUM_THREADS=6 mpirun -np 8" "aero_mpi_openmp" "" "PASSED"
         validate "mpirun -np 1" "aero_mpi_cuda" "" "PASSED"
-        validate "OMP_NUM_THREADS=32" "aero_openmp" "" "PASSED"
+        validate "OMP_NUM_THREADS=6" "aero_openmp" "" "PASSED"
         validate "" "aero_cuda" "" "PASSED"
-        # validate "" "aero_seq" "" "PASSED"
-        # validate "" "aero_genseq" "" "PASSED"
+        validate "" "aero_seq" "" "PASSED"
+        validate "" "aero_genseq" "" "PASSED"
     fi
 fi
 

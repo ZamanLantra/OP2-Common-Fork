@@ -70,12 +70,12 @@ if [[ "$RUN_TESTS" = "TRUE" ]]; then
         cd M6_wing
         echo "Running tests on $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        # validate "" "../euler3d_seq" "-i input.dat -v" "passed"
-        # validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
+        validate "" "../euler3d_seq" "-i input.dat -v" "passed"
+        validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
         validate "OMP_NUM_THREADS=6" "../euler3d_openmp" "-i input.dat -v" "passed"
         validate "" "../euler3d_cuda" "-i input.dat -v" "passed"
-        validate "mpirun -np 64" "../euler3d_mpi_seq" "-i input.dat -v" "passed"
-        validate "mpirun -np 64" "../euler3d_mpi_genseq" "-i input.dat -v" "passed"
+        validate "mpirun -np 16" "../euler3d_mpi_seq" "-i input.dat -v" "passed"
+        validate "mpirun -np 16" "../euler3d_mpi_genseq" "-i input.dat -v" "passed"
         validate "OMP_NUM_THREADS=6 mpirun -np 8" "../euler3d_mpi_openmp" "-i input.dat -v" "passed"
         validate "mpirun -np 4" "../euler3d_mpi_cuda" "-i input.dat -v" "passed"
     fi
@@ -93,12 +93,12 @@ if [[ "$RUN_TESTS" = "TRUE" ]]; then
         cd Rotor37_1M
         echo "Running tests on $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        # validate "" "../euler3d_seq" "-i input.dat -v" "passed"
-        # validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
+        validate "" "../euler3d_seq" "-i input.dat -v" "passed"
+        validate "" "../euler3d_genseq" "-i input.dat -v" "passed"
         validate "OMP_NUM_THREADS=6" "../euler3d_openmp" "-i input.dat -v" "passed"
         validate "" "../euler3d_cuda" "-i input.dat -v" "passed"
-        validate "mpirun -np 64" "../euler3d_mpi_seq" "-i input.dat -v" "passed"
-        validate "mpirun -np 64" "../euler3d_mpi_genseq" "-i input.dat -v" "passed"
+        validate "mpirun -np 16" "../euler3d_mpi_seq" "-i input.dat -v" "passed"
+        validate "mpirun -np 16" "../euler3d_mpi_genseq" "-i input.dat -v" "passed"
         validate "OMP_NUM_THREADS=6 mpirun -np 8" "../euler3d_mpi_openmp" "-i input.dat -v" "passed"
         validate "mpirun -np 4" "../euler3d_mpi_cuda" "-i input.dat -v" "passed"
     fi

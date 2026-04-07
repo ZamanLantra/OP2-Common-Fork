@@ -57,52 +57,52 @@ jobs:
           make -C op2 -j"$N_PROC"
 
       # 5. Compile functional tests
-      # - name: Compile functional tests
-      #   run: |
-      #     source "$SOURCE_SCRIPT"
-      #     export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
-      #     cd tests/bash
-      #     COMPILE_TESTS=TRUE ./functional_test.sh
+      - name: Compile functional tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          COMPILE_TESTS=TRUE ./functional_test.sh
 
-      # # 6. Run functional tests
-      # - name: Run functional tests
-      #   run: |
-      #     source "$SOURCE_SCRIPT"
-      #     export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
-      #     cd tests/bash
-      #     RUN_TESTS=TRUE ./functional_test.sh
+      # 6. Run functional tests
+      - name: Run functional tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          RUN_TESTS=TRUE ./functional_test.sh
 
-      # # 7. Compile aero tests
-      # - name: Compile Aero tests
-      #   run: |
-      #     source "$SOURCE_SCRIPT"
-      #     export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
-      #     cd tests/bash
-      #     COMPILE_TESTS=TRUE ./aero_test.sh
+      # 7. Compile aero tests
+      - name: Compile Aero tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          COMPILE_TESTS=TRUE ./aero_test.sh
 
-      # # 8. Run aero tests
-      # - name: Run Aero tests
-      #   run: |
-      #     source "$SOURCE_SCRIPT"
-      #     export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
-      #     cd tests/bash
-      #     RUN_TESTS=TRUE ./aero_test.sh
+      # 8. Run aero tests
+      - name: Run Aero tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          RUN_TESTS=TRUE ./aero_test.sh
 
-      # # 9. Compile MGCFD tests
-      # - name: Compile MGCFD tests
-      #   run: |
-      #     source "$SOURCE_SCRIPT"
-      #     export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
-      #     cd tests/bash
-      #     COMPILE_TESTS=TRUE ./mgcfd_test.sh
+      # 9. Compile MGCFD tests
+      - name: Compile MGCFD tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          COMPILE_TESTS=TRUE ./mgcfd_test.sh
 
-      # # 10. Run MGCFD tests
-      # - name: Run MGCFD tests
-      #   run: |
-      #     source "$SOURCE_SCRIPT"
-      #     export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
-      #     cd tests/bash
-      #     RUN_TESTS=TRUE ./mgcfd_test.sh
+      # 10. Run MGCFD tests
+      - name: Run MGCFD tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
+          cd tests/bash
+          RUN_TESTS=TRUE ./mgcfd_test.sh
 
       # 11. Compile airfoil tests 
       - name: Compile Airfoil tests

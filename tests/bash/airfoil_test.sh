@@ -48,14 +48,14 @@ if [[ "$TEST_AIRFOIL_CPP" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
             echo "Running tests on App: $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
             echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-            validate "OMP_NUM_THREADS=32" "airfoil_openmp" "" "PASSED"
+            validate "OMP_NUM_THREADS=6" "airfoil_openmp" "" "PASSED"
             validate "" "airfoil_cuda" "" "PASSED"
-            validate "mpirun -np 64" "airfoil_par_mpi_seq" "" "PASSED"
-            validate "mpirun -np 64" "airfoil_par_mpi_genseq" "" "PASSED"
-            validate "OMP_NUM_THREADS=8 mpirun -np 8" "airfoil_par_mpi_openmp" "" "PASSED"
+            validate "mpirun -np 16" "airfoil_par_mpi_seq" "" "PASSED"
+            validate "mpirun -np 16" "airfoil_par_mpi_genseq" "" "PASSED"
+            validate "OMP_NUM_THREADS=6 mpirun -np 8" "airfoil_par_mpi_openmp" "" "PASSED"
             validate "mpirun -np 1" "airfoil_par_mpi_cuda" "" "PASSED"
-            # validate "" "airfoil_seq" "" "PASSED"
-            # validate "" "airfoil_genseq" "" "PASSED"
+            validate "" "airfoil_seq" "" "PASSED"
+            validate "" "airfoil_genseq" "" "PASSED"
         fi
     done
 fi
@@ -79,14 +79,14 @@ if [[ "$TEST_AIRFOIL_CPP" = "TRUE" ]] && [[ "$TEST_TEMPDATS" = "TRUE" ]]; then
         echo "Running tests on App: $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
         echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        validate "OMP_NUM_THREADS=32" "airfoil_openmp" "" "PASSED"
+        validate "OMP_NUM_THREADS=6" "airfoil_openmp" "" "PASSED"
         validate "" "airfoil_cuda" "" "PASSED"
-        validate "mpirun -np 64" "airfoil_par_mpi_seq" "" "PASSED"
-        validate "mpirun -np 64" "airfoil_par_mpi_genseq" "" "PASSED"
-        validate "OMP_NUM_THREADS=8 mpirun -np 8" "airfoil_par_mpi_openmp" "" "PASSED"
+        validate "mpirun -np 16" "airfoil_par_mpi_seq" "" "PASSED"
+        validate "mpirun -np 16" "airfoil_par_mpi_genseq" "" "PASSED"
+        validate "OMP_NUM_THREADS=6 mpirun -np 8" "airfoil_par_mpi_openmp" "" "PASSED"
         validate "mpirun -np 1" "airfoil_par_mpi_cuda" "" "PASSED"
-        # validate "" "airfoil_seq" "" "PASSED"
-        # validate "" "airfoil_genseq" "" "PASSED"
+        validate "" "airfoil_seq" "" "PASSED"
+        validate "" "airfoil_genseq" "" "PASSED"
     fi
 fi
 
@@ -115,14 +115,14 @@ if [[ "$TEST_AIRFOIL_CPP" = "TRUE" ]] && [[ "$TEST_HDF5" = "TRUE" ]]; then
             echo "Running tests on App: $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
             echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-            validate "OMP_NUM_THREADS=32" "airfoil_openmp" "" "PASSED"
+            validate "OMP_NUM_THREADS=6" "airfoil_openmp" "" "PASSED"
             validate "" "airfoil_cuda" "" "PASSED"
-            validate "mpirun -np 64" "airfoil_mpi_seq" "" "PASSED"
-            validate "mpirun -np 64" "airfoil_mpi_genseq" "" "PASSED"
-            validate "OMP_NUM_THREADS=8 mpirun -np 8" "airfoil_mpi_openmp" "" "PASSED"
+            validate "mpirun -np 16" "airfoil_mpi_seq" "" "PASSED"
+            validate "mpirun -np 16" "airfoil_mpi_genseq" "" "PASSED"
+            validate "OMP_NUM_THREADS=6 mpirun -np 8" "airfoil_mpi_openmp" "" "PASSED"
             validate "mpirun -np 1" "airfoil_mpi_cuda" "" "PASSED"
-            # validate "" "airfoil_seq" "" "PASSED"
-            # validate "" "airfoil_genseq" "" "PASSED"
+            validate "" "airfoil_seq" "" "PASSED"
+            validate "" "airfoil_genseq" "" "PASSED"
         fi
     done
 fi
@@ -151,14 +151,14 @@ if [[ "$TEST_AIRFOIL_FORTRAN" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
         echo "Running tests on App: $PWD" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
         echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-        # validate "" "airfoil_plain_seq" "" "PASSED"
-        # validate "" "airfoil_plain_genseq" "" "PASSED"
+        validate "" "airfoil_plain_seq" "" "PASSED"
+        validate "" "airfoil_plain_genseq" "" "PASSED"
 
-        # validate "" "airfoil_arg_ptrs_seq" "" "PASSED"
-        # validate "" "airfoil_arg_ptrs_genseq" "" "PASSED"
+        validate "" "airfoil_arg_ptrs_seq" "" "PASSED"
+        validate "" "airfoil_arg_ptrs_genseq" "" "PASSED"
 
-        validate "mpirun -np 64" "airfoil_hdf5_mpi_seq" "" "PASSED"
-        validate "mpirun -np 64" "airfoil_hdf5_mpi_genseq" "" "PASSED"
+        validate "mpirun -np 16" "airfoil_hdf5_mpi_seq" "" "PASSED"
+        validate "mpirun -np 16" "airfoil_hdf5_mpi_genseq" "" "PASSED"
     fi
 fi
 
