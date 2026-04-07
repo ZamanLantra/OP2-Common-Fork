@@ -1,0 +1,97 @@
+name: Local CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - created
+  workflow_dispatch:
+  
+env:
+  SOURCE_SCRIPT: scripts/zam_gnu
+  N_PROC: 24
+
+jobs:
+  local-test:
+    runs-on: self-hosted
+
+    steps:
+      # 1. Checkout correct branch
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          ref: OP2_refactor
+
+      # 2. Debug info
+      - name: Print runner info
+        run: |
+          echo "Machine: $(hostname)"
+          echo "PWD: $(pwd)"
+
+      # 4. Compile OP2
+      - name: Compile OP2
+        run: |
+          source "$SOURCE_SCRIPT"
+
+          if [ -f makefiles/.config.mk ]; then
+            echo "Cleaning OP2..."
+            make -C op2 clean
+          fi
+
+          echo "Configuring OP2..."
+          make -C op2 config
+
+          echo "Building OP2..."
+          make -C op2 -j$(N_PROC)
+
+      # 5. Run functional tests
+      - name: Functional tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          cd tests/bash
+          ./functional_test.sh
+
+      # 6. Run aero tests
+      - name: Aero tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          cd tests/bash
+          ./aero_test.sh
+
+      # 7. Run MGCFD tests
+      - name: MGCFD tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          cd tests/bash
+          ./mgcfd_test.sh
+
+      # 8. Run airfoil tests
+      - name: Airfoil tests
+        run: |
+          source "$SOURCE_SCRIPT"
+          cd tests/bash
+          ./airfoil_test.sh
+
+      # 9. Archive logs (always runs)
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: |
+            *.log
+            tests/**/*.log
+
+      # 10. Final status message
+      - name: Final status
+        if: success()
+        run: echo "CI tests passed"
+
+      - name: Final failure
+        if: failure()
+        run: echo "Some CI tests failed"
