@@ -1,0 +1,50 @@
+# singularity exec \
+#     --nv \
+#     ~/hydra-stuff/hsys-ubuntu24.04-cuda12.6.sif \
+#     bash -c "source zam_gnu && ./test_airfoil.sh"
+
+#OP2 specifics
+export OP2_COMPILER=gnu
+export OP2_INSTALL_PATH=/home/zl/work3/OP2-Common/op2
+
+EXT_LIB_INSTALL_PATH=/home/zl/work2/op2_ci
+
+# export OP_AUTO_SOA=1
+
+#External libraries
+# export PARMETIS_INSTALL_PATH=$EXT_LIB_INSTALL_PATH/parmetis-4.0.3-gnu-12.2.0-openmpi
+export PTSCOTCH_INSTALL_PATH=/rr-home/shared/transfer/toGihan/op2-deps-iynx/ParMetis/Ver4.0.3/
+# export PTSCOTCH_INSTALL_PATH=$HOME/lib/scotch
+
+# export HDF5_INSTALL_PATH=$EXT_LIB_INSTALL_PATH/hdf5-1.14.6-gnu-12.2.0-openmpi
+export HDF5_PAR_INSTALL_PATH=$EXT_LIB_INSTALL_PATH/hdf5-1.14.6-gnu-12.2.0-openmpi
+export HDF5_SEQ_INSTALL_PATH=$EXT_LIB_INSTALL_PATH/hdf5-1.14.6-gnu-12.2.0-seq
+
+# spack load hdf5@1.14.3%gcc@12.2.0
+# export HDF5_INSTALL_PATH=$(spack location -i hdf5@1.14.3%gcc@12.2.0)
+
+# export LD_LIBRARY_PATH=$PARMETIS_INSTALL_PATH/lib:$PTSCOTCH_INSTALL_PATH/lib:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=$HDF5_INSTALL_PATH/lib:$LD_LIBRARY_PATH
+
+module load cuda/12.0
+export CUDA_INSTALL_PATH="/opt/nvidia/hpc_sdk/Linux_x86_64/23.1/cuda/12.0"
+export CUDA_VISIBLE_DEVICES=0
+export NV_ARCH=Hopper
+
+MPI_PATH=/usr/lib/x86_64-linux-gnu/openmpi
+# export MPI_INSTALL_PATH=$MPI_PATH
+
+# export OMPI_CXX=g++
+# export OMPI_CC=gcc
+# export OMPI_FC=gfortran
+
+export CPLUS_INCLUDE_PATH=$MPI_PATH/include:$CPLUS_INCLUDE_PATH
+export C_INCLUDE_PATH=$MPI_PATH/include:$C_INCLUDE_PATH
+
+export EXTRA_CXXFLAGS="-I$MPI_PATH/include"
+
+
+
+export OP_JIT_DEBUG=1
+export OP_JIT_ENABLE=1
+export OP_JIT_SEQ_COMPILE=1
