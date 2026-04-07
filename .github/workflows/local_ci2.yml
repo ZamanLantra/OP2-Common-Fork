@@ -45,6 +45,8 @@ jobs:
             make -C op2 clean
           fi
 
+          make -C op2 config
+
       # 4. Compile OP2
       - name: Compile OP2
         run: |
