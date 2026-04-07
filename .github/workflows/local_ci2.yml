@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
   
 env:
-  SOURCE_SCRIPT: OP2-Common-Fork/scripts/source_gnuz
+  SOURCE_SCRIPT: scripts/source_gnuz
   N_PROC: 24
 
 jobs:
@@ -37,6 +37,8 @@ jobs:
       # 4. Compile OP2
       - name: Compile OP2
         run: |
+          echo "Currently at " $(pwd)
+
           source "$SOURCE_SCRIPT"
 
           if [ -f makefiles/.config.mk ]; then
