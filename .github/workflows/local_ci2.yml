@@ -16,8 +16,8 @@ on:
 env:
   SOURCE_SCRIPT: scripts/source_gnuz
   N_PROC: 64
-  M6_WING_PATH: ${{ env.HOME }}/mgcfd-meshes/M6_wing
-  ROTOR_37_1M_PATH: ${{ env.HOME }}/mgcfd-meshes/Rotor37_1M
+  M6_WING_PATH: ${{ runner.HOME }}/mgcfd-meshes/M6_wing
+  ROTOR_37_1M_PATH: ${{ runner.HOME }}/mgcfd-meshes/Rotor37_1M
 
 jobs:
   local-test:
