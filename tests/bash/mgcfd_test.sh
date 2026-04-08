@@ -11,8 +11,8 @@ RUN_TESTS=${RUN_TESTS:-FALSE}
 RUN_M6_WING=${RUN_M6_WING:-TRUE}
 RUN_ROTOR_37_1M=${RUN_ROTOR_37_1M:-TRUE}
 
-M6_WING_PATH=${M6_WING_PATH:-/home/zl/work3/OP2-Common/MG-CFD-app-OP2/M6_wing}
-ROTOR_37_1M_PATH=${ROTOR_37_1M_PATH:-/home/zl/work3/OP2-Common/MG-CFD-app-OP2/Rotor37_1M}
+M6_WING_PATH=${M6_WING_PATH:-/home/zl/mgcfd-meshes/M6_wing}
+ROTOR_37_1M_PATH=${ROTOR_37_1M_PATH:-/home/zl/mgcfd-meshes/Rotor37_1M}
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$SCRIPT_DIR/../../MG-CFD-app-OP2"

@@ -16,8 +16,8 @@ on:
 env:
   SOURCE_SCRIPT: scripts/source_gnuz
   N_PROC: 64
-  M6_WING_PATH: "/home/zl/work3/OP2-Common/MG-CFD-app-OP2/M6_wing"
-  ROTOR_37_1M_PATH: "/home/zl/work3/OP2-Common/MG-CFD-app-OP2/Rotor37_1M"
+  M6_WING_PATH: "$HOME/mgcfd-meshes/M6_wing"
+  ROTOR_37_1M_PATH: "$HOME/mgcfd-meshes/Rotor37_1M"
 
 jobs:
   local-test:
@@ -74,6 +74,7 @@ jobs:
       - name: Compile Aero tests
         run: |
           source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./aero_test.sh
 
@@ -88,6 +89,7 @@ jobs:
       - name: Compile MGCFD tests
         run: |
           source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./mgcfd_test.sh
 
@@ -102,6 +104,7 @@ jobs:
       - name: Compile Airfoil tests
         run: |
           source "$SOURCE_SCRIPT"
+          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./airfoil_test.sh
 
