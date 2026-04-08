@@ -1,6 +1,10 @@
+module purge
 
 # OP2 specifics --------------------------------------------------------------------------------
-export OP2_COMPILER=gnu
+export OP2_COMPILER=nvhpc
+# export OP2_C_COMPILER=gnu
+# export OP2_F_COMPILER=nvhpc
+# export OP2_C_CUDA_COMPILER=nvhpc
 
 export OP2_INSTALL_PATH=$HOME/work3/OP2-Common/op2
 
@@ -23,14 +27,11 @@ export HDF5_PAR_INSTALL_PATH=$EXT_LIB_INSTALL_PATH/hdf5-1.14.6-gnu-12.2.0-openmp
 export HDF5_SEQ_INSTALL_PATH=$EXT_LIB_INSTALL_PATH/hdf5-1.14.6-gnu-12.2.0-seq
 # export LD_LIBRARY_PATH=$HDF5_INSTALL_PATH/lib:$LD_LIBRARY_PATH
 
-# Load CUDA/HIP module and set environment variables for CUDA/HIP ------------------------------
-module load cuda/12.0
-export CUDA_INSTALL_PATH="/opt/nvidia/hpc_sdk/Linux_x86_64/23.1/cuda/12.0"
+# Load CUDA module and set environment variables for CUDA --------------------------------------
+module load nvhpc/24.3
+export CUDA_INSTALL_PATH="/opt/nvidia/hpc_sdk/Linux_x86_64/24.3/cuda/12.3"
 export CUDA_VISIBLE_DEVICES=0
 export NV_ARCH=Hopper
-
-# export HIP_INSTALL_PATH=/opt/rocm-7.2.0
-# export HIP_VISIBLE_DEVICES=0
 
 # Set MPI Paths incase not automatically detected ----------------------------------------------
 MPI_PATH=/usr/lib/x86_64-linux-gnu/openmpi
@@ -39,22 +40,3 @@ MPI_PATH=/usr/lib/x86_64-linux-gnu/openmpi
 export CPLUS_INCLUDE_PATH=$MPI_PATH/include:$CPLUS_INCLUDE_PATH
 export C_INCLUDE_PATH=$MPI_PATH/include:$C_INCLUDE_PATH
 export EXTRA_CXXFLAGS="-I$MPI_PATH/include"
-
-# Command to run tests through singularity -----------------------------------------------------
-# singularity exec \
-#     --nv \
-#     ~/hydra-stuff/hsys-ubuntu24.04-cuda12.6.sif \
-#     bash -c "source zam_gnu && ./test_airfoil.sh"
-
-# Install ParMETIS -----------------------------------------------------------------------------
-# git clone https://github.com/KarypisLab/GKlib.git && cd GKlib && \
-#     make config prefix=$HOME/work2/op2_ci/parmetis-4.0.3-gnu-12.2.0-openmpi-i64 i64=1 && \
-#     make -j6 install && cd .. && rm -rf GKlib
-
-# git clone https://github.com/KarypisLab/METIS.git && cd METIS && \
-#     make config prefix=$HOME/work2/op2_ci/parmetis-4.0.3-gnu-12.2.0-openmpi-i64 i64=1 && \
-#     make -j6 install && cd .. && rm -rf METIS
-
-# git clone https://github.com/KarypisLab/ParMETIS.git && cd ParMETIS && \
-#     make config prefix=$HOME/work2/op2_ci/parmetis-4.0.3-gnu-12.2.0-openmpi-i64 i64=1 -DIDXTYPEWIDTH=64 && \
-#     make -j6 install && cd .. && rm -rf ParMETIS

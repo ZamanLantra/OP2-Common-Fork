@@ -60,7 +60,6 @@ jobs:
       - name: Compile functional tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./functional_test.sh
 
@@ -68,7 +67,6 @@ jobs:
       - name: Run functional tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           RUN_TESTS=TRUE ./functional_test.sh
 
@@ -76,7 +74,6 @@ jobs:
       - name: Compile Aero tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./aero_test.sh
 
@@ -84,7 +81,6 @@ jobs:
       - name: Run Aero tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           RUN_TESTS=TRUE ./aero_test.sh
 
@@ -92,7 +88,6 @@ jobs:
       - name: Compile MGCFD tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./mgcfd_test.sh
 
@@ -100,7 +95,6 @@ jobs:
       - name: Run MGCFD tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           RUN_TESTS=TRUE ./mgcfd_test.sh
 
@@ -108,7 +102,6 @@ jobs:
       - name: Compile Airfoil tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           COMPILE_TESTS=TRUE ./airfoil_test.sh
 
@@ -116,7 +109,6 @@ jobs:
       - name: Run Airfoil tests
         run: |
           source "$SOURCE_SCRIPT"
-          export APP_EXTRA_TRANSLATOR_FLAGS="-I $(pwd)/op2/include"
           cd tests/bash
           RUN_TESTS=TRUE ./airfoil_test.sh
 
