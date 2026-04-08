@@ -30,12 +30,12 @@ function validate {
 
     echo "Running: $cmd" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
-    eval "$cmd" > perf_out 2>&1
+    eval "$cmd" > perf_out_$bin 2>&1
 
-    grep "Max total runtime" perf_out | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
+    grep "Max total runtime" perf_out_$bin | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 
     set +e
-    grep -q $grep_word perf_out
+    grep -q $grep_word perf_out_$bin
     local rc=$?
     set -e
 
@@ -45,7 +45,7 @@ function validate {
         echo $bin "+++++++++++++++++++ TEST PASSED"  | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
     fi
 
-    rm perf_out
+    rm perf_out_$bin
     echo "" | tee -a "$SCRIPT_RUN_LOC/${TEST_APP}_test.log"
 }
 

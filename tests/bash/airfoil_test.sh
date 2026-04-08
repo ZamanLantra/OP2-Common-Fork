@@ -9,7 +9,7 @@ COMPILE_TESTS=${COMPILE_TESTS:-FALSE}
 RUN_TESTS=${RUN_TESTS:-FALSE}
 
 TEST_AIRFOIL_CPP=TRUE
-TEST_AIRFOIL_FORTRAN=FALSE
+TEST_AIRFOIL_FORTRAN=TRUE
 
 TEST_PLAIN=TRUE
 TEST_HDF5=TRUE
@@ -127,8 +127,8 @@ if [[ "$TEST_AIRFOIL_CPP" = "TRUE" ]] && [[ "$TEST_HDF5" = "TRUE" ]]; then
     done
 fi
 
-# Compile and run Fortran airfoil plain tests -------------------------------------------------------
-if [[ "$TEST_AIRFOIL_FORTRAN" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
+# Compile and run Fortran airfoil tests -------------------------------------------------------
+if [[ "$TEST_AIRFOIL_FORTRAN" = "TRUE" ]]; then
 
     cd $APPS_LOC/fortran/${TEST_APP}
 
@@ -154,11 +154,26 @@ if [[ "$TEST_AIRFOIL_FORTRAN" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
         validate "" "airfoil_plain_seq" "" "PASSED"
         validate "" "airfoil_plain_genseq" "" "PASSED"
 
-        validate "" "airfoil_arg_ptrs_seq" "" "PASSED"
-        validate "" "airfoil_arg_ptrs_genseq" "" "PASSED"
+        validate "OMP_NUM_THREADS=6" "airfoil_plain_openmp" "" "PASSED"
+        # validate "" "airfoil_plain_cuda" "" "PASSED"
+
+        # validate "" "airfoil_arg_ptrs_seq" "" "PASSED"
+        # validate "" "airfoil_arg_ptrs_genseq" "" "PASSED"
+
+        # validate "OMP_NUM_THREADS=6" "airfoil_arg_ptrs_openmp" "" "PASSED"
+        # validate "" "airfoil_arg_ptrs_cuda" "" "PASSED"
+
+        validate "" "airfoil_hdf5_seq" "" "PASSED"
+        validate "" "airfoil_hdf5_genseq" "" "PASSED"
+
+        validate "OMP_NUM_THREADS=6" "airfoil_hdf5_openmp" "" "PASSED"
+        # validate "" "airfoil_hdf5_cuda" "" "PASSED"
 
         validate "mpirun -np 16" "airfoil_hdf5_mpi_seq" "" "PASSED"
         validate "mpirun -np 16" "airfoil_hdf5_mpi_genseq" "" "PASSED"
+
+        validate "OMP_NUM_THREADS=6 mpirun -np 8" "airfoil_hdf5_mpi_openmp" "" "PASSED"
+        # validate "mpirun -np 4" "airfoil_hdf5_mpi_cuda" "" "PASSED"
     fi
 fi
 
