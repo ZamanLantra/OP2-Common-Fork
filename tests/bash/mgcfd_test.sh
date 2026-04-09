@@ -2,6 +2,9 @@
 
 set -e
 
+# Source approprite script (scripts/source_gnuz) and run below command:
+# COMPILE_OP2=TRUE COMPILE_TESTS=TRUE RUN_TESTS=TRUE ./mgcfd_test.sh
+
 export TEST_APP="euler3d";
 
 COMPILE_OP2=${COMPILE_OP2:-FALSE}
@@ -18,7 +21,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$SCRIPT_DIR/../../MG-CFD-app-OP2"
 
 REPO_URL="https://github.com/warwick-hpsc/MG-CFD-app-OP2"
-BRANCH="OP2_refactor"
+BRANCH="master"
 
 source ./test_core.sh
 

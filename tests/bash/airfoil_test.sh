@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source approprite script (scripts/source_gnuz) and run below command:
+# COMPILE_OP2=TRUE COMPILE_TESTS=TRUE RUN_TESTS=TRUE ./airfoil_test.sh
+
 set -e
 
 export TEST_APP="airfoil";
@@ -30,7 +33,7 @@ fi
 if [[ "$TEST_AIRFOIL_CPP" = "TRUE" ]] && [[ "$TEST_PLAIN" = "TRUE" ]]; then
 
     for p in "${precision[@]}"; do
-        if [[ "$p" == "dp" ]]; then continue; fi # remove once the bug is fixed
+        # if [[ "$p" == "dp" ]]; then continue; fi # remove once the bug is fixed
 
         cd $APPS_LOC/c/${TEST_APP}/airfoil_plain/$p
 

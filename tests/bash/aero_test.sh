@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source approprite script (scripts/source_gnuz) and run below command:
+# COMPILE_OP2=TRUE COMPILE_TESTS=TRUE RUN_TESTS=TRUE ./aero_test.sh
+
 set -e
 
 export TEST_APP="aero";
